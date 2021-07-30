@@ -785,12 +785,16 @@ static const char *vol_upcmd[] = { "pactl", "set-sink-volume", "0", "+5%", NULL}
 static const char *vol_downcmd[] = { "pactl", "set-sink-volume", "0", "-5%", NULL};
 static const char *vol_mutecmd[] = { "pactl", "set-sink-mute", "0", "toggle", NULL};
 
+static const char *mic_mutecmd[] = { "pactl", "set-source-mute", "45", "toggle" };
+
 static const char *br_upcmd[] = { "brightnessctl", "set", "5%+", NULL};
 static const char *br_downcmd[] = { "brightnessctl", "set", "5%-", NULL };
 
 static const char *prev[] = { "playerctl", "previous", NULL };
 static const char *play_pause[] = { "playerctl", "play-pause", NULL };
 static const char *next[] = { "playerctl", "next", NULL };
+
+static const char *prt_scr[] = { "flameshot", "gui", NULL };
 
 #if BAR_STATUSCMD_PATCH
 #if BAR_DWMBLOCKS_PATCH
@@ -816,6 +820,8 @@ static Key on_empty_keys[] = {
 };
 #endif // ON_EMPTY_KEYS_PATCH
 
+#define PrintScreenDWM	    0x0000ff61
+
 static Key keys[] = {
 	/* modifier                     key            function                argument */
 	#if KEYMODES_PATCH
@@ -827,11 +833,13 @@ static Key keys[] = {
 	{ 0,                            XK_F1,         spawn,                  {.v = vol_mutecmd } },
 	{ 0,                            XK_F2,         spawn,                  {.v = vol_downcmd } },
 	{ 0,                            XK_F3,         spawn,                  {.v = vol_upcmd } },
+	{ 0,                            XK_F4,         spawn,                  {.v = mic_mutecmd } },
 	{ 0,                            XK_F5,         spawn,                  {.v = br_downcmd } },
 	{ 0,                            XK_F6,         spawn,                  {.v = br_upcmd } },
 	{ 0,                            XK_F9,         spawn,                  {.v = prev } },
 	{ 0,                            XK_F10,        spawn,                  {.v = play_pause } },
 	{ 0,                            XK_F11,        spawn,                  {.v = next} },
+	{ 0,                            PrintScreenDWM, spawn,                  {.v = prt_scr} },
 	{ MODKEY|ControlMask,           XK_q,          spawn,                  SHCMD("kill -SEGV ""\"$(xprop | grep PID| awk '{print $3}')""\"")},
 	#if RIODRAW_PATCH
 	{ MODKEY|ControlMask,           XK_p,          riospawnsync,           {.v = dmenucmd } },
