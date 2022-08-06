@@ -33,9 +33,9 @@ static const char *altbarclass           = "Polybar"; /* Alternate bar class nam
 static const char *altbarcmd             = "$HOME/bar.sh"; /* Alternate bar launch command */
 #endif // BAR_ANYBAR_PATCH
 #if BAR_HOLDBAR_PATCH
-static const int showbar                 = 0;   /* 0 means no bar */
-#else
 static const int showbar                 = 1;   /* 0 means no bar */
+#else
+static const int showbar                 = 0;   /* 0 means no bar */
 #endif // BAR_HOLDBAR_PATCH
 static const int topbar                  = 1;   /* 0 means bottom bar */
 #if TAB_PATCH
@@ -779,7 +779,7 @@ static const char *dmenucmd[] = {
 	NULL
 };
 static const char *termcmd[]  = { "st", NULL };
-static const char *firefoxcmd[] = { "firefox", NULL};
+static const char *firefoxcmd[] = { "brave", NULL};
 
 static const char *vol_upcmd[] = { "pactl", "set-sink-volume", "0", "+5%", NULL};
 static const char *vol_downcmd[] = { "pactl", "set-sink-volume", "0", "-5%", NULL};
